@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Resume and portfolio of Kaavya Shree R — Electronics & Instrumentation student.">
+    <title>Kaavya Shree R - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #6c8bc7;
+            --accent-color: #ff9a76;
+            --light-color: #f8f9fa;
+            --background-color: #ffffff;
+            --text-color: #5a6c7d;
+            --card-bg: #f0f4f8;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e3e8f0 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Main Layout */
+        .main-layout {
+            display: flex;
+            min-height: 100vh;
+            gap: 30px;
+            padding-top: 100px;
+        }
+
+        /* Left Section - Profile */
+        .left-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        /* Right Section - Content */
+        .right-section {
+            flex: 2;
+            position: relative;
+        }
+
+        /* Profile Image */
+        .profile-container {
+            position: relative;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 10px solid white;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-ring {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            border: 3px solid var(--accent-color);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        .name-title {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .name-title h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        /* Navigation Menu */
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 40px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .nav-item {
+            background: var(--card-bg);
+            padding: 18px 25px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid #e0e6ef;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .nav-item:hover {
+            transform: translateX(10px);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: 0 8px 25px rgba(74, 111, 165, 0.3);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: 0 8px 25px rgba(74, 111, 165, 0.3);
+        }
+
+        .nav-item i {
+            font-size: 1.2rem;
+            width: 25px;
+        }
+
+        /* Download Button - Top Right Corner */
+        .top-download-btn {
+            position: absolute;
+            top: -70px;
+            right: 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(74, 111, 165, 0.3);
+            z-index: 100;
+        }
+
+        .top-download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(74, 111, 165, 0.4);
+        }
+
+        /* Bottom Download Button (removed from left section) */
+        .download-btn {
+            display: none;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            backdrop-filter: blur(10px);
+            margin-bottom: 30px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        /* Logo */
+        .logo {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            z-index: 1000;
+        }
+
+        /* Common Components */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            transition: all 0.3s;
+            border: 1px solid #e0e6ef;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .skill-card i {
+            font-size: 40px;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            transition: all 0.3s;
+            border: 1px solid #e0e6ef;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .date {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 5px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        /* Contact Items */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-item i {
+            font-size: 24px;
+            color: var(--accent-color);
+            width: 45px;
+            height: 45px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .main-layout {
+                flex-direction: column;
+                padding-top: 80px;
+            }
+            
+            .left-section {
+                position: static;
+                margin-bottom: 40px;
+            }
+            
+            .nav-menu {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                max-width: 100%;
+            }
+            
+            .nav-item {
+                flex: 1;
+                min-width: 150px;
+                justify-content: center;
+            }
+            
+            .nav-item:hover {
+                transform: translateY(-5px);
+            }
+            
+            .top-download-btn {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: 20px auto;
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-img {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .content-section {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .top-download-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-img {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .content-section {
+                padding: 20px;
+                margin: 10px 0;
+            }
+            
+            .nav-item {
+                padding: 15px;
+                font-size: 1rem;
+            }
+            
+            .logo {
+                font-size: 22px;
+                padding: 8px 16px;
+            }
+            
+            .top-download-btn {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo -->
+    <header class="logo" aria-label="Kaavya Shree R">Kaavya Shree R</header>
+
+    <div class="container">
+        <div class="main-layout">
+            <!-- Left Section: Profile Image and Navigation -->
+            <div class="left-section">
+                <div class="profile-container">
+                    <div class="profile-ring"></div>
+                    <img src="kaavya.jpg" 
+                         alt="Kaavya Shree R" 
+                         class="profile-img"
+                         onerror="this.src='https://images.unsplash.com/photo-1616587226154-91eab0a51dc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80'">
+                </div>
+                <div class="name-title">
+                    <h1>Kaavya Shree R</h1>
+                    <div class="subtitle">ELECTRONICS &amp; INSTRUMENTATION ENGINEERING</div>
+                </div>
+                <div class="nav-menu">
+                    <button class="nav-item active" data-section="about" type="button">
+                        <i class="fas fa-user"></i>
+                        <span>About Me</span>
+                    </button>
+                    <button class="nav-item" data-section="education" type="button">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Education</span>
+                    </button>
+                    <button class="nav-item" data-section="skills" type="button">
+                        <i class="fas fa-code"></i>
+                        <span>Skills</span>
+                    </button>
+                    <button class="nav-item" data-section="projects" type="button">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>Projects</span>
+                    </button>
+                    <button class="nav-item" data-section="contact" type="button">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contact Me</span>
+                    </button>
+                </div>
+                <!-- Download button removed from here -->
+            </div>
+
+            <!-- Right Section: Content -->
+            <div class="right-section">
+                <!-- Download Button - Top Right -->
+                <button class="top-download-btn" id="downloadResume" type="button" aria-label="Download resume">
+                    <i class="fas fa-download"></i> DOWNLOAD RESUME
+                </button>
+
+                <!-- About Section -->
+                <div class="content-section active" id="about-section">
+                    <h2>About Me</h2>
+                    <div class="section-subtitle">Career Objective &amp; Interests</div>
+                    <h3><i class="fas fa-bullseye"></i> Career Objective</h3>
+                    <p>To begin my career in a growth-oriented organization where I can effectively apply my knowledge and skills in Electronics and Instrumentation Engineering. I aim to contribute to innovative technological solutions while continuously enhancing my technical, analytical, and problem-solving abilities. I am eager to work in a challenging environment that encourages learning, creativity, and professional development. With a strong interest in instrumentation systems, automation, and electronic circuits, I seek opportunities to gain hands-on experience and expand my understanding of industry practices. I am committed to being a responsible team member, adapting to new technologies, and delivering quality work. My goal is to grow along with the organization and contribute to its long-term success.</p>
+                    <h3><i class="fas fa-lightbulb"></i> Areas of Interest</h3>
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <i class="fas fa-microchip"></i>
+                            <h4>Sensors &amp; Transducers</h4>
+                            <p>Design and implementation of sensor systems</p>
+                        </div>
+                        <div class="skill-card">
+                            <i class="fas fa-industry"></i>
+                            <h4>Industrial Instrumentation</h4>
+                            <p>Process measurement and control systems</p>
+                        </div>
+                        <div class="skill-card">
+                            <i class="fas fa-cogs"></i>
+                            <h4>Process Control</h4>
+                            <p>Automation and control engineering</p>
+                        </div>
+                        <div class="skill-card">
+                            <i class="fas fa-robot"></i>
+                            <h4>Robotics Systems</h4>
+                            <p>Semi-autonomous robot design</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Section -->
+                <div class="content-section" id="education-section">
+                    <h2>Education</h2>
+                    <div class="section-subtitle">Academic Journey</div>
+                    <div class="grid-2">
+                        <div class="card">
+                            <div class="date">2023 - 2027 (Expected)</div>
+                            <h3>Kongu Engineering College</h3>
+                            <p><strong>B.E Electronics &amp; Instrumentation Engineering</strong></p>
+                            <p>CGPA: 7.66 (till 4th Semester)</p>
+                        </div>
+                        <div class="card">
+                            <div class="date">HSC - 2023</div>
+                            <h3>Jaycees Matriculation School</h3>
+                            <p><strong>Higher Secondary Certificate</strong></p>
+                            <p>Percentage: 82%</p>
+                        </div>
+                        <div class="card">
+                            <div class="date">SSLC - 2021</div>
+                            <h3>Jaycees Matriculation School</h3>
+                            <p><strong>Secondary School Leaving Certificate</strong></p>
+                            <p>Status: All Pass</p>
+                        </div>
+                        <div class="card">
+                            <div class="date">Certification</div>
+                            <h3>International Certification Course</h3>
+                            <p><strong>Semi Autonomous Robots</strong></p>
+                            <p>Conducted by ARTPARK &amp; IISc Bangalore</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="content-section" id="skills-section">
+                    <h2>Skills &amp; Expertise</h2>
+                    <div class="section-subtitle">Technical and Professional Competencies</div>
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <i class="fas fa-microchip"></i>
+                            <h3>Technical Skills</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Robotics Systems</span>
+                                <span class="skill-tag">Circuit Design</span>
+                                <span class="skill-tag">Keil Software</span>
+                                <span class="skill-tag">Proteus</span>
+                                <span class="skill-tag">PCB Design</span>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <i class="fas fa-code"></i>
+                            <h3>Programming &amp; Web</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">HTML5</span>
+                                <span class="skill-tag">CSS3</span>
+                                <span class="skill-tag">IoT Systems</span>
+                                <span class="skill-tag">ESP8266</span>
+                                <span class="skill-tag">Embedded C</span>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <i class="fas fa-industry"></i>
+                            <h3>Industrial Knowledge</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Sensors</span>
+                                <span class="skill-tag">Process Control</span>
+                                <span class="skill-tag">Instrumentation</span>
+                                <span class="skill-tag">Quality Control</span>
+                                <span class="skill-tag">PLC Systems</span>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <i class="fas fa-users"></i>
+                            <h3>Soft Skills</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Communication</span>
+                                <span class="skill-tag">Leadership</span>
+                                <span class="skill-tag">Coordination</span>
+                                <span class="skill-tag">Problem Solving</span>
+                                <span class="skill-tag">Team Management</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects Section -->
+                <div class="content-section" id="projects-section">
+                    <h2>Projects &amp; Research</h2>
+                    <div class="section-subtitle">Technical Projects and Paper Presentations</div>
+                    <div class="grid-2">
+                        <div class="card">
+                            <div class="date">IoT Based Project</div>
+                            <h3>Water Leakage Detection System</h3>
+                            <p>Developed a low-cost IoT-based monitoring system using ESP8266 microcontroller.</p>
+                            <p><strong>Technologies:</strong> ESP8266, IoT, Sensor Networks</p>
+                        </div>
+                        <div class="card">
+                            <div class="date">CIT College Coimbatore (2024)</div>
+                            <h3>Paper Presentation</h3>
+                            <p><strong>"Enhancing CSSR Operation Using AI Powered Thermal Imaging"</strong></p>
+                        </div>
+                        <div class="card">
+                            <div class="date">IEEE, KEC (2024)</div>
+                            <h3>Paper Presentation</h3>
+                            <p><strong>"Energy Efficient Turbo System"</strong></p>
+                            <p>Research on optimizing energy efficiency in turbo systems.</p>
+                        </div>
+                        <div class="card">
+                            <div class="date">Practical Learning</div>
+                            <h3>Industrial Exposure</h3>
+                            <p>Visited AGNI STEELS and BHUVANEESHWARI COTSPIN for industrial exposure.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="content-section" id="contact-section">
+                    <h2>Contact Me</h2>
+                    <div class="section-subtitle">Get in touch for opportunities</div>
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+91 63790 17737</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>kaavyashreer.23eie@kongu.edu</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Kangayam, Tamil Nadu</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-linkedin"></i>
+                            <div>
+                                <h4>LinkedIn</h4>
+                                <p>linkedin.com/in/kaavya-shree-r</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation functionality
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all nav items
+                document.querySelectorAll('.nav-item').forEach(nav => {
+                    nav.classList.remove('active');
+                });
+
+                // Add active class to clicked item
+                this.classList.add('active');
+
+                // Hide all sections
+                document.querySelectorAll('.content-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+
+                // Show selected section (guard if missing)
+                const sectionId = this.getAttribute('data-section') + '-section';
+                const sectionEl = document.getElementById(sectionId);
+                if (sectionEl) {
+                    sectionEl.classList.add('active');
+                    // Smooth scroll to top of section
+                    sectionEl.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+
+            // Keyboard accessibility: trigger click on Enter or Space
+            item.addEventListener('keydown', function(e) {
+                const key = e.key || e.keyCode;
+                if (key === 'Enter' || key === ' ' || key === 'Spacebar' || key === 13 || key === 32) {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+        });
+
+        // Download Resume Function (guard if element missing)
+        const downloadBtn = document.getElementById('downloadResume');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', function() {
+            const resumeContent = `KAAVYA SHREE R
+Electronics and Instrumentation Engineering
+
+===========================================
+CONTACT INFORMATION
+===========================================
+Phone: +91 63790 17737
+Location: Kangayam, Tamil Nadu
+Email: kaavyashreer.23eie@kongu.edu
+LinkedIn: linkedin.com/in/kaavya-shree-r
+
+===========================================
+CAREER OBJECTIVE
+===========================================
+To begin my career in a growth-oriented organization where I can apply my knowledge 
+and skills while learning and gaining valuable experience in the field of Electronics 
+and Instrumentation Engineering.
+
+===========================================
+EDUCATION
+===========================================
+KONGU ENGINEERING COLLEGE
+B.E Electronics and Instrumentation Engineering
+CGPA: 7.66 (till 4th Semester) - Expected Graduation: 2027
+
+JAYCEES MATRICULATION SCHOOL
+HSC (2023) - 82%
+SSLC (2021) - All Pass
+
+===========================================
+SKILLS
+===========================================
+• Robotics Systems Design
+• Circuit Design (Keil & Proteus)
+• HTML5, CSS3
+• IoT Systems (ESP8266)
+• Embedded C Programming
+
+===========================================
+PROJECTS
+===========================================
+WATER LEAKAGE DETECTION SYSTEM
+• Developed a low-cost IoT-based monitoring system using ESP8266
+• Detects water leakage and illegal siphoning in real-time
+
+===========================================
+Generated on: ${new Date().toLocaleDateString()}
+===========================================`;
+
+            // Create a Blob with the content (include charset)
+            const blob = new Blob([resumeContent], { type: 'text/plain;charset=utf-8' });
+            
+            // Create download link
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'Kaavya_Shree_R_Resume.txt';
+            
+            // Trigger download and clean up object URL
+            document.body.appendChild(link);
+            try {
+                link.click();
+            } catch (err) {
+                // Fallback for browsers that block programmatic click
+                window.open(link.href, '_blank');
+            }
+            // Remove link and revoke URL to free memory
+            document.body.removeChild(link);
+            setTimeout(() => {
+                URL.revokeObjectURL(link.href);
+            }, 1000);
+
+            // Show confirmation message
+            alert('Resume downloaded as "Kaavya_Shree_R_Resume.txt" to your Downloads folder!');
+            });
+        }
+
+        // Auto image fallback
+        const profileImg = document.querySelector('.profile-img');
+        if (profileImg) {
+            profileImg.onerror = function() {
+                this.src = 'https://images.unsplash.com/photo-1616587226154-91eab0a51dc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80';
+            };
+        }
+
+        // Improve icon accessibility: hide decorative <i> icons from assistive tech
+        document.querySelectorAll('i').forEach(icon => {
+            try { icon.setAttribute('aria-hidden', 'true'); } catch (e) { /* ignore */ }
+        });
+    </script>
+</body>
+</html>
